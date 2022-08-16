@@ -13,6 +13,11 @@ const INITIAL_STATE = [{
   avatar: 'https://i.pravatar.cc/150?u=sergio_serrano',      
 }];
 
+interface AppState {
+  subs: Sub[],
+  newSubsNumber: number
+}
+
 interface Sub {
   nick: string,
   avatar: string,
@@ -21,9 +26,8 @@ interface Sub {
 }
 
 function App() {
-  const [subs, setSubs] = useState<Array<Sub>>([
-    
-  ]);
+  const [subs, setSubs] = useState<AppState['subs']>([]);
+  const [newSubsNumber, setNewSubsNumber] = useState<AppState['newSubsNumber']>(0);
 
   useEffect(() => {
     setSubs(INITIAL_STATE);
