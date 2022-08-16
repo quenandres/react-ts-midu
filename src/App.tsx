@@ -1,5 +1,6 @@
 import React,{ useEffect, useState } from 'react';
 import './App.css';
+import List from './components/List';
 
 const INITIAL_STATE = [{
   nick: 'dapelu',
@@ -38,17 +39,7 @@ function App() {
   return (
     <div className="App">
       <h1>Midu subs</h1>
-      <ul>
-        {
-          subs.map(sub => {
-            return <li key={sub.nick}>
-              <img src={sub.avatar} alt={`Avatar for ${sub.nick}`}/>
-              <h4>{sub.nick} (<small>{sub.avatar}</small>)</h4>
-              <p>{sub.description?.substring(0, 100)}</p>
-            </li>
-          })
-        }
-      </ul>
+      <List subs={subs}/>
     </div>
   );
 }
