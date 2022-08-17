@@ -2,6 +2,7 @@ import React,{ useEffect, useState } from 'react';
 import './App.css';
 import { Form } from './components/Form';
 import List from './components/List';
+import {Sub} from './types';
 
 const INITIAL_STATE = [{
   nick: 'dapelu',
@@ -20,12 +21,7 @@ interface AppState {
   newSubsNumber: number
 }
 
-interface Sub {
-  nick: string,
-  avatar: string,
-  subMonths: number,
-  description?: string
-}
+
 
 function App() {
   const [subs, setSubs] = useState<AppState['subs']>([]);

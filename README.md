@@ -52,3 +52,22 @@ const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
   }
 
 ```
+
+-----
+Para el funcionamiento del change con textarea agregar _React.ChangeEvent<HTMLTextAreaElement>_ al tipo
+```tsx
+const handleChange = (e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {    
+    setInputValues({
+        ...inputValues,
+        [e.target.name]: e.target.value
+    })
+}
+```
+
+El archivo nombrado *types.d.ts* la d nos indica que unicamente es de definiciones.
+```ts
+types.d.ts
+```
+
+
+
