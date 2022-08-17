@@ -19,3 +19,36 @@ const List: React.FC<Props> = ({subs}) => {...
 // Tercera
 const List = ({subs}: Props) => {...
 ```
+
+
+
+```tsx
+<input onChange={handleChange} value={inputValues.nick} type="text" name="nick" placeholder="nick" />
+
+const handleChange = (e) => { // Esto obtendra un error en el type del evento
+    setInputValues({
+        ...inputValues,
+        [e.target.name]: e.target.value
+    })
+  }
+
+```
+### *Truco* para determinar el tipo de un evento
+
+```tsx
+<input onChange={(e) => {
+    setInputValues({
+        ...inputValues,
+        [e.target.name]: e.target.value
+    })
+}} value={inputValues.nick} type="text" name="nick" placeholder="nick" />
+// En el hover de la e nos determinara el tipo del dato que debemos utilizar
+
+const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setInputValues({
+        ...inputValues,
+        [e.target.name]: e.target.value
+    })
+  }
+
+```
