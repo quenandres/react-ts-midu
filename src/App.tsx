@@ -27,6 +27,11 @@ function App() {
   const [subs, setSubs] = useState<AppState['subs']>([]);
   const [newSubsNumber, setNewSubsNumber] = useState<AppState['newSubsNumber']>(0);
 
+  const handleSubmit = (newSub: Sub) => {
+    setSubs(subs => [...subs, newSub]);
+  };
+
+
   useEffect(() => {
     setSubs(INITIAL_STATE);
   }, [])
@@ -37,7 +42,7 @@ function App() {
     <div className="App">
       <h1>Midu subs</h1>
       <List subs={subs}/>
-      <Form />
+      <Form onNewSub={handleSubmit}/>
     </div>
   );
 }
