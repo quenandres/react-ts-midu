@@ -72,5 +72,8 @@ types.d.ts
 ## Typescript
 Valida en estatico en build time no en run time
 
+## Guia react + typescript cheat sets
+https://github.com/typescript-cheatsheets/react
+
 
 
