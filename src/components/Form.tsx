@@ -1,4 +1,3 @@
-import {useState, useReducer} from 'react';
 import {Sub} from './../types';
 import useNewFormSub from '../hooks/useNewSubForm';
 
@@ -15,9 +14,7 @@ export const Form = ({onNewSub}: FormProps) => {
     evt.preventDefault();
     onNewSub(inputValues);    
     handleClear();
-  };
-
-  
+  };  
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {   
     const {name, value} = e.target;

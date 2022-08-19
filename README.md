@@ -69,5 +69,8 @@ El archivo nombrado *types.d.ts* la d nos indica que unicamente es de definicion
 types.d.ts
 ```
 
+## Typescript
+Valida en estatico en build time no en run time
+
 
 

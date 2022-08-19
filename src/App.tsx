@@ -2,20 +2,10 @@ import React,{ useEffect, useState, useRef } from 'react';
 import './App.css';
 import { Form } from './components/Form';
 import List from './components/List';
-import {Sub} from './types';
+import {Sub, SubsResponseFromApi} from './types';
 
-const INITIAL_STATE = [{
-  nick: 'dapelu',
-  subMonths: 3,
-  avatar: 'https://i.pravatar.cc/150?u=dapelu',
-  description: 'Dapelu es moderador'
-},
-{
-  nick: 'sergio_serrado',
-  subMonths: 7,
-  avatar: 'https://i.pravatar.cc/150?u=sergio_serrano',      
-}];
-
+const INITIAL_STATE = [];
+const API = 'http://localhost:3001/data';
 interface AppState {
   subs: Sub[],
   newSubsNumber: number
@@ -30,19 +20,44 @@ function App() {
 
   const handleSubmit = (newSub: Sub) => {
     setSubs(subs => [...subs, newSub]);
+    setNewSubsNumber(n => n+1);
   };
 
 
   useEffect(() => {
-    setSubs(INITIAL_STATE);
-  }, [])
-  
+    const fetchSubs = (): Promise<SubsResponseFromApi> => {
+      return fetch(API).then(res => res.json());
+    }
 
+    const mapFromApiToSubs = (apiResponse: SubsResponseFromApi):Array<Sub> => {
+      return apiResponse.map(subFromApi => {
+        const {
+          nick,
+          months: subMonths,
+          profileUrl: avatar,
+          description
+        } = subFromApi;
+
+        return {
+          nick,
+          description,
+          avatar,
+          subMonths
+        }
+      })
+    }
+
+    fetchSubs()
+      .then(mapFromApiToSubs)
+      .then(setSubs)
+
+  }, []);
 
   return (
     <div className="App" ref={divRef}>
       <h1>Midu subs</h1>
       <List subs={subs}/>
+      new Subs: {newSubsNumber}
       <Form onNewSub={handleSubmit}/>
     </div>
   );
